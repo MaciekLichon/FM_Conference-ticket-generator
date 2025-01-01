@@ -1,0 +1,43 @@
+@import "../../../styles.scss";
+
+.input {
+  display: grid;
+  gap: 0.75rem;
+
+  &__label {
+    color: $clr-neutral-0;
+  }
+
+  &__field {
+    input {
+      width: 100%;
+      color: $clr-neutral-0;
+      padding: 1rem;
+      border: 1px solid $clr-neutral-500;
+      background-color: rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      outline: none;
+      transition: background-color 300ms;
+
+      &::placeholder {
+        color: $clr-neutral-300;
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 3px;
+      }
+    }
+  }
+
+  &__hint {
+    color: $clr-neutral-300;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}

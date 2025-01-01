@@ -1,0 +1,16 @@
+@import "../../../styles.scss";
+
+.form {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 1.5rem;
+
+  @media (min-width: $tablet) {
+    margin-top: 2.875rem;
+  }
+
+  &__item {
+    display: grid;
+    gap: 0.75rem;
+  }
+}

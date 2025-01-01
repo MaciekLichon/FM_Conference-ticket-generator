@@ -1,0 +1,50 @@
+@import "./variables.scss";
+
+body {
+  font-family: $ff-primary;
+  color: $clr-neutral-0;
+}
+
+h1 {
+  line-height: $lh-small;
+  font-weight: $fw-extra-bold;
+  letter-spacing: $ls-extra-large;
+  font-size: 1.875rem;
+
+  @media (min-width: $tablet) {
+    font-size: 3.75rem;
+  }
+}
+
+.text-preset-4 {
+  color: $clr-neutral-300;
+  line-height: $lh-regular;
+  font-weight: $fw-medium;
+  letter-spacing: $ls-large;
+  font-size: 1.25rem;
+
+  @media (min-width: $tablet) {
+    font-size: 1.5rem;
+  }
+}
+
+.text-preset-5 {
+  line-height: $lh-small;
+  font-weight: $fw-medium;
+  letter-spacing: $ls-large;
+  font-size: 1.25rem;
+}
+
+.text-preset-6 {
+  line-height: $lh-regular;
+  font-weight: $fw-medium;
+  letter-spacing: $ls-none;
+  font-size: 1.125rem;
+}
+
+.text-preset-7 {
+  line-height: $lh-regular;
+  font-weight: $fw-regular;
+  letter-spacing: $ls-small;
+  font-size: 0.75rem;
+}

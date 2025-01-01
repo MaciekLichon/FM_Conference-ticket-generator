@@ -1,0 +1,52 @@
+@import "../styles.scss";
+
+.main {
+  min-height: 100dvh;
+  background-image: url("../assets/images/pattern-lines.svg"),
+    url("../assets/images/background-mobile.png");
+  background-size: cover, 100% 100%;
+  background-repeat: no-repeat;
+
+  position: relative;
+  padding: 2rem 1rem;
+
+  @media (min-width: $tablet) {
+    padding: 2.5rem 2rem;
+  }
+
+  &__pattern {
+    position: absolute;
+
+    &--top {
+      right: 0;
+
+      top: 24px;
+      width: 112px;
+
+      @media (min-width: $tablet) {
+        top: 88px;
+        width: 232px;
+      }
+
+      @media (min-width: $desktop) {
+        top: 76px;
+        width: 446px;
+      }
+    }
+
+    &--bottom {
+      left: 0;
+      bottom: 0;
+
+      width: 301px;
+
+      @media (min-width: $tablet) {
+        width: 396px;
+      }
+
+      @media (min-width: $desktop) {
+        width: 825px;
+      }
+    }
+  }
+}

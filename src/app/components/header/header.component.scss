@@ -1,0 +1,22 @@
+@import "../../../styles.scss";
+
+.header {
+  &__logo {
+    width: 10rem;
+    margin-inline: auto;
+    margin-bottom: 2.5rem;
+
+    @media (min-width: $tablet) {
+      width: 12.75rem;
+    }
+  }
+
+  &__headline {
+    text-align: center;
+  }
+
+  &__caption {
+    text-align: center;
+    margin-top: 1.25rem;
+  }
+}
