@@ -1,6 +1,7 @@
 <form class="form" novalidate [formGroup]="form">
-  <app-input></app-input>
-  <app-input></app-input>
-  <app-input></app-input>
-  <app-input></app-input>
+  <app-uploader></app-uploader>
+  <app-input label="Full Name"></app-input>
+  <app-input label="Email Address" placeholder="example@email.com"></app-input>
+  <app-input label="GitHub Username" placeholder="@yourusername"></app-input>
+  <button class="form__button text-preset-5">Generate My Ticket</button>
 </form>

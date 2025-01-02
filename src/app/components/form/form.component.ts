@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { InputComponent } from '../input/input.component';
+import { UploaderComponent } from '../uploader/uploader.component';
 
 type Form = {
   avatar: FormControl<string>;
@@ -17,7 +18,7 @@ type Form = {
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [ReactiveFormsModule, InputComponent],
+  imports: [ReactiveFormsModule, InputComponent, UploaderComponent],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
 })
