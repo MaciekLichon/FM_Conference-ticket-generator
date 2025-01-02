@@ -1,7 +1,42 @@
 <div class="uploader">
   <label class="uploader__label text-preset-5">Upload Avatar</label>
-  <div class="uploader__field">
-    <input type="file" class="text-preset-6" />
+  <div class="uploader__field" [class.uploader__field--loaded]="imageSrc()">
+    @if (imageSrc()) {
+    <div class="uploader__field-icon">
+      <img [src]="imageSrc()" alt="avatar" />
+    </div>
+    <p class="uploader__field-actions text-preset-6">
+      <button
+        class="uploader__field-action text-preset-7"
+        (click)="removeImage()"
+      >
+        <span>Remove Image</span>
+      </button>
+      <button class="uploader__field-action text-preset-7">
+        <span>Change Image</span>
+        <input
+          type="file"
+          accept=".jpg,.jpeg,.png"
+          class="text-preset-6"
+          (change)="uploadImage($event)"
+        />
+      </button>
+    </p>
+    } @else {
+    <div class="uploader__field-icon">
+      <img src="../../../assets/images/icon-upload.svg" alt="icon upload" />
+    </div>
+    <p class="uploader__field-text text-preset-6">
+      Drag and drop or click to upload
+    </p>
+    }
+    <input
+      *ngIf="!imageSrc()"
+      type="file"
+      accept=".jpg,.jpeg,.png"
+      class="text-preset-6"
+      (change)="uploadImage($event)"
+    />
   </div>
   <div class="uploader__hint">
     <svg

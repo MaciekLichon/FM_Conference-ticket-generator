@@ -11,16 +11,15 @@
   &__field {
     $radius: 12px;
 
-    position: relative;
-
     input {
       width: 100%;
       color: $clr-neutral-0;
       padding: 1rem;
       background-color: rgba(255, 255, 255, 0.08);
+      border: 1px solid $clr-neutral-500;
       border-radius: $radius;
       backdrop-filter: blur(2px);
-      transition: background-color 300ms;
+      transition: background-color 300ms, box-shadow 300ms;
 
       &::placeholder {
         color: $clr-neutral-300;
@@ -29,23 +28,11 @@
       &:hover {
         background-color: rgba(255, 255, 255, 0.2);
       }
-    }
 
-    &::after {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      border-radius: $radius;
-      border: 1px solid transparent;
-      background: $clr-neutral-500;
-      mask: conic-gradient(#000 0 0) padding-box exclude,
-        conic-gradient(#000 0 0);
-      pointer-events: none;
+      &:focus {
+        box-shadow: 0 0 0 3px $clr-neutral-900, 0 0 0 6px $clr-neutral-500;
+      }
     }
-
-    // &:focus-within::after {
-    //   background: $gradient-text;
-    // }
   }
 
   &__hint {
