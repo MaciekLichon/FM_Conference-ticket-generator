@@ -8,7 +8,7 @@ $clr-neutral-900: hsl(248, 70%, 10%);
 $clr-orange-500: hsl(7, 88%, 67%);
 $clr-orange-700: hsl(7, 71%, 60%);
 
-$gradient-text: hsl(7, 86%, 67%) to hsl(0, 0%, 100%);
+$gradient-text: linear-gradient(90deg, $clr-orange-500, $clr-neutral-0);
 
 /* TYPOGRAPHY */
 $ff-primary: "Inconsolata", serif;

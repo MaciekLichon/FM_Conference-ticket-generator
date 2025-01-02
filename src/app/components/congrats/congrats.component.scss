@@ -1,0 +1,24 @@
+@import "../../../styles.scss";
+
+.congrats {
+  text-align: center;
+  display: grid;
+  gap: 1.25rem;
+  max-width: 50.875rem;
+  margin-inline: auto;
+
+  &__name {
+    background-image: $gradient-text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  &__caption {
+    max-width: 32.125rem;
+    margin-inline: auto;
+  }
+
+  &__email {
+    color: $clr-orange-500;
+  }
+}

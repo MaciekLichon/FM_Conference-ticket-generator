@@ -9,14 +9,18 @@
   }
 
   &__field {
+    $radius: 12px;
+
+    position: relative;
+
     input {
       width: 100%;
       color: $clr-neutral-0;
       padding: 1rem;
-      border: 1px solid $clr-neutral-500;
       background-color: rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
+      border-radius: $radius;
       outline: none;
+      border: none;
       transition: background-color 300ms;
 
       &::placeholder {
@@ -26,10 +30,22 @@
       &:hover {
         background-color: rgba(255, 255, 255, 0.2);
       }
+    }
 
-      &:focus {
-        box-shadow: 0 0 0 3px;
-      }
+    &::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: $radius;
+      border: 1px solid transparent;
+      background: $clr-neutral-500;
+      mask: conic-gradient(#000 0 0) padding-box exclude,
+        conic-gradient(#000 0 0);
+      pointer-events: none;
+    }
+
+    &:focus-within::after {
+      background: $gradient-text;
     }
   }
 

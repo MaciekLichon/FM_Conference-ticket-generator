@@ -2,11 +2,17 @@
 
 .form {
   margin-top: 2.5rem;
+  margin-inline: auto;
   display: grid;
   gap: 1.5rem;
+  max-width: 32.625rem;
 
   @media (min-width: $tablet) {
     margin-top: 2.875rem;
+  }
+
+  @media (min-width: $desktop) {
+    max-width: 28.75rem;
   }
 
   &__item {
