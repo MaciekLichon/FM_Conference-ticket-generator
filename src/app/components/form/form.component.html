@@ -3,5 +3,7 @@
   <app-input label="Full Name"></app-input>
   <app-input label="Email Address" placeholder="example@email.com"></app-input>
   <app-input label="GitHub Username" placeholder="@yourusername"></app-input>
-  <button class="form__button text-preset-5">Generate My Ticket</button>
+  <button class="form__button text-preset-5" (click)="onSubmit($event)">
+    Generate My Ticket
+  </button>
 </form>

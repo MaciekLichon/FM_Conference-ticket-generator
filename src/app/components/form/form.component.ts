@@ -2,18 +2,12 @@ import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
+  NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { InputComponent } from '../input/input.component';
 import { UploaderComponent } from '../uploader/uploader.component';
-
-type Form = {
-  avatar: FormControl<string>;
-  fullName: FormControl<string>;
-  email: FormControl<string>;
-  github: FormControl<string>;
-};
 
 @Component({
   selector: 'app-form',
@@ -23,12 +17,19 @@ type Form = {
   styleUrl: './form.component.scss',
 })
 export class FormComponent {
-  private formBuilder = inject(FormBuilder);
+  private formBuilder = inject(NonNullableFormBuilder);
 
-  form = this.formBuilder.group<Form>({
-    avatar: this.formBuilder.nonNullable.control('', [Validators.required]),
-    fullName: this.formBuilder.nonNullable.control('', [Validators.required]),
-    email: this.formBuilder.nonNullable.control('', [Validators.required]),
-    github: this.formBuilder.nonNullable.control('', [Validators.required]),
+  form = this.formBuilder.group({
+    avatar: ['', [Validators.required]],
+    fullName: ['', [Validators.required]],
+    email: ['', [Validators.required]],
+    github: ['', [Validators.required]],
   });
+
+  onSubmit(event: Event) {
+    event.preventDefault();
+
+    this.form.updateValueAndValidity();
+    this.form.markAllAsTouched();
+  }
 }
