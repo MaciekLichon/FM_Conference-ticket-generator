@@ -15,8 +15,12 @@
         </div>
       </div>
       <div class="ticket__details-person">
-        <img src="" alt="avatar" class="ticket__details-person__avatar" />
-        <h3 class="ticket__details-person__name">Jonatan Kristof</h3>
+        <img
+          [src]="avatar()"
+          alt="avatar"
+          class="ticket__details-person__avatar"
+        />
+        <h3 class="ticket__details-person__name">{{ name() }}</h3>
         <div class="ticket__details-person__github">
           <svg
             class="ticket__details-person__github-icon"
@@ -31,7 +35,7 @@
               clip-rule="evenodd"
             />
           </svg>
-          <p class="text-preset-mixed">jonatankristof0101</p>
+          <p class="text-preset-mixed">{{ github() }}</p>
         </div>
       </div>
     </div>

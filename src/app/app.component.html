@@ -1,10 +1,20 @@
 <main class="main">
   <div class="main__content">
     <app-logo></app-logo>
+    @if (!formValue()) {
     <app-header></app-header>
-    <!-- <app-congrats></app-congrats> -->
-    <app-form></app-form>
-    <!-- <app-ticket></app-ticket> -->
+    <app-form (isFormSubmitted)="onFormSubmit($event)"></app-form>
+    } @else {
+    <app-congrats
+      [name]="formValue()?.fullName"
+      [email]="formValue()?.email"
+    ></app-congrats>
+    <app-ticket
+      [avatar]="formValue()?.avatar"
+      [name]="formValue()?.fullName"
+      [github]="formValue()?.github"
+    ></app-ticket>
+    }
   </div>
   <img
     class="main__pattern main__pattern--top"

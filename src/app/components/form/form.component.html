@@ -1,9 +1,134 @@
+<ng-template #hintIcon>
+  <svg
+    class="form-input__hint-icon"
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    fill="none"
+    viewBox="0 0 16 16"
+  >
+    <path
+      stroke="#D1D0D5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M2 8a6 6 0 1 0 12 0A6 6 0 0 0 2 8Z"
+    />
+    <path fill="#D1D0D5" d="M8.004 10.462V7.596ZM8 5.57v-.042Z" />
+    <path
+      stroke="#D1D0D5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M8.004 10.462V7.596M8 5.569v-.042"
+    />
+  </svg>
+</ng-template>
+
 <form class="form" novalidate [formGroup]="form">
-  <app-uploader></app-uploader>
-  <app-input label="Full Name"></app-input>
-  <app-input label="Email Address" placeholder="example@email.com"></app-input>
-  <app-input label="GitHub Username" placeholder="@yourusername"></app-input>
-  <button class="form__button text-preset-5" (click)="onSubmit($event)">
+  <div class="form-input form-uploader">
+    <label class="form-input__label text-preset-5">Upload Avatar</label>
+    <div
+      class="form-uploader__field"
+      [class.form-uploader__field--loaded]="imageSrc()"
+    >
+      <input
+        #fileInput
+        type="file"
+        accept=".jpg,.jpeg,.png"
+        class="text-preset-6"
+        formControlName="avatar"
+        (change)="uploadImage($event)"
+      />
+      @if (imageSrc()) {
+      <div class="form-uploader__field-icon">
+        <img [src]="imageSrc()" alt="avatar" />
+      </div>
+      <p class="form-uploader__field-actions text-preset-6">
+        <button
+          class="form-uploader__field-action text-preset-7"
+          (click)="removeImage()"
+        >
+          <span>Remove Image</span>
+        </button>
+        <button
+          class="form-uploader__field-action text-preset-7"
+          (click)="fileInput.click()"
+        >
+          <span>Change Image</span>
+        </button>
+      </p>
+      } @else {
+      <div class="form-uploader__field-icon">
+        <img src="../../../assets/images/icon-upload.svg" alt="icon upload" />
+      </div>
+      <p class="form-uploader__field-text text-preset-6">
+        Drag and drop or click to upload
+      </p>
+      }
+    </div>
+    <div class="form-input__hint">
+      <ng-container *ngTemplateOutlet="hintIcon"></ng-container>
+      <span class="text-preset-7">
+        Upload your photo (JPG or PNG, max size: 500KB).
+      </span>
+    </div>
+  </div>
+
+  <div class="form-input">
+    <label class="form-input__label text-preset-5">Full Name</label>
+    <input class="form-input__field text-preset-6" formControlName="fullName" />
+
+    @if (fullName.errors && fullName.touched) {
+    <div class="form-input__hint">
+      <ng-container *ngTemplateOutlet="hintIcon"></ng-container>
+      <span *ngIf="fullName.errors['required']" class="text-preset-7">
+        This field is required
+      </span>
+    </div>
+    }
+  </div>
+
+  <div class="form-input">
+    <label class="form-input__label text-preset-5">Email Address</label>
+    <input
+      class="form-input__field text-preset-6"
+      formControlName="email"
+      placeholder="example@email.com"
+    />
+
+    @if (email.errors && email.touched) {
+    <div class="form-input__hint">
+      <ng-container *ngTemplateOutlet="hintIcon"></ng-container>
+      <span *ngIf="email.errors['required']" class="text-preset-7">
+        This field is required
+      </span>
+      <span *ngIf="email.errors['email']" class="text-preset-7">
+        Please enter a valid email
+      </span>
+    </div>
+    }
+  </div>
+
+  <div class="form-input">
+    <label class="form-input__label text-preset-5">GitHub Username</label>
+    <input
+      class="form-input__field text-preset-6"
+      formControlName="github"
+      placeholder="@yourusername"
+    />
+
+    @if (github.errors && github.touched) {
+    <div class="form-input__hint">
+      <ng-container *ngTemplateOutlet="hintIcon"></ng-container>
+      <span *ngIf="github.errors['required']" class="text-preset-7">
+        This field is required
+      </span>
+    </div>
+    }
+  </div>
+
+  <button class="form-button text-preset-5" (click)="onSubmit($event)">
     Generate My Ticket
   </button>
+
+  {{ form.value | json }}
 </form>
