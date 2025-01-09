@@ -8,15 +8,16 @@ import {
   Validators,
 } from '@angular/forms';
 import { JsonPipe, NgIf, NgTemplateOutlet } from '@angular/common';
+import { fileSizeValidator } from '../../validators/file-size.validator';
 
 type Form = {
-  avatar: FormControl<string>;
+  avatar: FormControl<File | null>;
   fullName: FormControl<string>;
   email: FormControl<string>;
   github: FormControl<string>;
 };
 
-export type FormValue = {
+export type TicketValue = {
   avatar: string;
   fullName: string;
   email: string;
@@ -33,18 +34,24 @@ export type FormValue = {
 export class FormComponent {
   private formBuilder = inject(NonNullableFormBuilder);
 
-  isFormSubmitted = output<FormValue>();
+  isFormSubmitted = output<TicketValue>();
 
   imageSrc = signal<string>('');
 
   form = this.formBuilder.group<Form>({
-    avatar: this.formBuilder.control('', [Validators.required]),
+    avatar: this.formBuilder.control(null, [
+      Validators.required,
+      fileSizeValidator(),
+    ]),
     fullName: this.formBuilder.control('', [Validators.required]),
     email: this.formBuilder.control('', [
       Validators.required,
       Validators.email,
     ]),
-    github: this.formBuilder.control('', [Validators.required]),
+    github: this.formBuilder.control('', [
+      Validators.required,
+      Validators.pattern(/^@.*$/),
+    ]),
   });
 
   onSubmit(event: Event) {
@@ -55,8 +62,8 @@ export class FormComponent {
 
     if (this.form.valid) {
       const currentValue = this.form.getRawValue();
-      currentValue.avatar = this.imageSrc();
-      this.isFormSubmitted.emit(currentValue);
+      const ticketData = { ...currentValue, avatar: this.imageSrc() };
+      this.isFormSubmitted.emit(ticketData);
     }
   }
 
@@ -64,6 +71,8 @@ export class FormComponent {
     const uploader = event.target as HTMLInputElement;
     if (uploader.files) {
       const uploadedImage = uploader.files[0];
+      this.form.patchValue({ avatar: uploadedImage });
+
       const imageURL = URL.createObjectURL(uploadedImage);
       this.imageSrc.set(imageURL);
     }

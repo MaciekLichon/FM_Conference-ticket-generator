@@ -122,6 +122,9 @@
       <span *ngIf="github.errors['required']" class="text-preset-7">
         This field is required
       </span>
+      <span *ngIf="github.errors['pattern']" class="text-preset-7">
+        Please prefix your username with "&#64;" sign
+      </span>
     </div>
     }
   </div>
